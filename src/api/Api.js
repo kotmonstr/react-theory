@@ -6,33 +6,46 @@ class Api extends Component{
         super(props);
 
         this.state = {
-            posts: [
-                {title: 'Статья 1', content: 'содержание статьи 1'},
-                {title: 'Статья 2', content: 'содержание статьи 2'},
-                {title: 'Статья 3', content: 'содержание статьи 3'},
-                {title: 'Статья 4', content: 'содержание статьи 4'},
-
-
-            ],
-            posts2 : this.getPosts()
+            // posts: [
+            //     {title: 'Статья 1', content: 'содержание статьи 1'},
+            //     {title: 'Статья 2', content: 'содержание статьи 2'},
+            //     {title: 'Статья 3', content: 'содержание статьи 3'},
+            //     {title: 'Статья 4', content: 'содержание статьи 4'},
+            //
+            //
+            // ],
+            posts : [this.getPosts]
 
         };
     }
 
 
     getPosts = () =>{
-        var result = [
+        const result = [
             {title: 'Статья 1', content: 'содержание статьи 1'},
             {title: 'Статья 2', content: 'содержание статьи 2'},
             {title: 'Статья 3', content: 'содержание статьи 3'},
             {title: 'Статья 4', content: 'содержание статьи 4'}
             ];
-        console.log('getPosts');
+      //  console.log('getPosts');
 
-        var x = Axios.get('http://wp.loc/wp-json/wp/v2/posts').then(function(response){ console.log(response.date)} );
-        console.log(x);
-        return result;
-    };
+         const x = Axios.get('http://wp.loc/wp-json/wp/v2/posts').then(function(response) {
+
+            const r = response.data;
+          //  console.log(r);
+
+            var xx = r.map((post, index) => {
+            //    console.log(post.id);
+                 result.push({ title : post.title.rendered, content : post.content.rendered})
+return result;
+            });
+            console.log(xx);
+            return result;
+        });
+
+         console.log(x);
+        return x;
+    }
 
 
 
@@ -42,7 +55,7 @@ class Api extends Component{
 
             <div>
 
-                { this.state.posts2.map((post,index)=>{
+                { this.state.posts.map((post,index)=>{
                     return(
                         <div key={index}>
                             <div>
