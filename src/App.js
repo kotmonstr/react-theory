@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
-
+import Api from './api/Api';
 
 class App extends Component {
 
@@ -22,6 +22,10 @@ class App extends Component {
             title: 'Kostya Sychev'
         };
     }
+
+
+
+
 
     inputHandler = (e)=>{
         this.setState({
@@ -94,8 +98,13 @@ class App extends Component {
                                 )
                         })}
                     </Row>
+
+                    <Row>
+                        <Api />
+                    </Row>
                 </Container>
                </div>
+
         );
     }
 }
