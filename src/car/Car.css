@@ -1,0 +1,11 @@
+.input{
+outline: none;
+}
+
+.input.green{
+    border: 3px solid green;
+}
+
+.input.red{
+    border: 3px solid red;
+}

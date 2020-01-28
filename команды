@@ -1,0 +1,4 @@
+sudo npm install -g create-react-app -установка глобально
+sudo create-react-app . устнановка приложения
+npm start - запуск приложения
+
