@@ -9,15 +9,19 @@ import { Row } from 'react-bootstrap';
 
 class App extends Component {
 
-    state = {
-        cars: [
-            {name: 'Ford', year: '2018',color: 'red'},
-            {name: 'Audi', year: '2010',color: 'blue'},
-            {name: 'Nissan', year: '2015',color: 'green'},
-            {name: 'LADA', year: '2015',color: 'marble'},
-        ],
-        title: 'Kostya Sychev'
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            cars: [
+                {name: 'Ford', year: '2018',color: 'red'},
+                {name: 'Audi', year: '2010',color: 'blue'},
+                {name: 'Nissan', year: '2015',color: 'green'},
+                {name: 'LADA', year: '2015',color: 'marble'},
+            ],
+            title: 'Kostya Sychev'
+        };
+    }
 
     inputHandler = (e)=>{
         this.setState({

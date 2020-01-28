@@ -1,5 +1,10 @@
 .input{
-outline: none;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: aquamarine;
+    border-radius: 5px 5px 5px 5px;
 }
 
 .input.green{
@@ -12,4 +17,13 @@ outline: none;
 
 .Car{
     transition: border, box-shadow .3s;
+    background-color: #b3b4e03b;
+}
+body{
+
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(50,63,68,1) 0%, rgba(94,206,233,1) 73%, rgba(0,212,255,1) 100%, rgba(99,197,217,1) 100%);
+}
+html{
+    height: 100%;
 }
