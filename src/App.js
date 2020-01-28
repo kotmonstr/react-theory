@@ -55,7 +55,7 @@ class App extends Component {
 
     render() {
         const divStyle = {
-            'border': '1px solid red',
+            //'border': '1px solid red',
             'padding': '20px',
             'margin': '20px'
         };

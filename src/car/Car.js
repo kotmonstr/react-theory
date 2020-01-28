@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import './Car.css';
+import Radium from 'radium';
 
 class Car extends Component{
 
@@ -15,17 +16,29 @@ class Car extends Component{
         }else{
             inputClasses.push('red')
         }
+
+
+        const style = {
+            boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .24)',
+            ':hover' : {
+                boxShadow: '0 4px 15px 0 rgba(0, 0, 0, .45)',
+                cursor: 'pointer'
+            }
+        };
+
+
         return (
-            <div className="Car">
 
-                <Card style={{ width: '10rem' }}>
+            <div className="Car" style={ style }>
 
-                    <Card.Body>cd
+                <Card>
+
+                    <Card.Body  style={style}>
                         <Card.Title>{ this.props.name }</Card.Title>
                         <Card.Text>
                             { this.props.year }
                         </Card.Text>
-                        <Card.Text>
+                        <Card.Text >
                             цвет: <strong style={{ color : this.props.color }}>  { this.props.color }</strong>
                         </Card.Text>
                         <input
@@ -46,4 +59,4 @@ class Car extends Component{
     }
 
 }
-export default Car;
+export default Radium(Car);

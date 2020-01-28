@@ -9,3 +9,7 @@ outline: none;
 .input.red{
     border: 3px solid red;
 }
+
+.Car{
+    transition: border, box-shadow .3s;
+}
