@@ -17,22 +17,39 @@ class Api extends Component {
     }
 
     getPosts = async () => {
-
         const posts = [];
 
         let queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/posts').then(function (response) {
             return response.data
         });
-
         queryrResult.map((post, index) => {
-            posts.push({title: post.title.rendered, content: post.content.rendered})
-        });
 
+           // const image = this.getImageById(post.id);
+            const image = '';
+            posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: image})
+        });
         this.setState({
             posts
         });
-
     };
+
+    getImageById = async(postId) =>{
+        let queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/media?parent='+ postId).then(function (response) {
+            return response.data
+        });
+
+        queryrResult.map((post, index) => {
+
+            console.log(post);
+            return ({image: post.id})
+        });
+
+    }
+
+
+
+
+
 
     render() {
         console.log(this.state.posts);
@@ -45,6 +62,7 @@ class Api extends Component {
                             <Card  key={index} >
                                 <Card.Body  >
                                     <h1>{post.title}</h1>
+                                    <p>ID: {post.id}</p>
                                     <p dangerouslySetInnerHTML={{ __html: post.content }} ></p>
                                 </Card.Body>
                             </Card>

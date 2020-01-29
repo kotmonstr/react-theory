@@ -6,6 +6,7 @@ import { Col } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import Api from './api/Api';
+import Counter from "./counter/Counter";
 
 class App extends Component {
 
@@ -72,7 +73,7 @@ class App extends Component {
 
         return (
             <div className="App" style={divStyle}>
-
+                <Counter />
                 <Container>
                     <Row>
                         <Col><h1> Hello {title} !</h1></Col>
