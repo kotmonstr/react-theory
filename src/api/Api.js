@@ -17,34 +17,47 @@ class Api extends Component {
     }
 
     getPosts = async () => {
-        const posts = [];
-
-        let queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/posts').then(function (response) {
+        let posts = [];
+        const queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/posts').then(function (response) {
             return response.data
         });
-        queryrResult.map((post, index) => {
 
-           // const image = this.getImageById(post.id);
-            const image = '';
-            posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: image})
-        });
-        this.setState({
-            posts
+        queryrResult.map((post, index) => {
+            if(post.featured_media !==0){
+                 this.getImageById(post.featured_media).then((resolve)=>{
+                     posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: resolve})
+                     this.setState({
+                        posts
+                     });
+                });
+            }else{
+                posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: ''})
+                this.setState({
+                    posts
+                });
+            }
         });
     };
 
-    getImageById = async(postId) =>{
-        let queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/media?parent='+ postId).then(function (response) {
-            return response.data
+    getImageById = async(imageId) =>{
+        axios.defaults.headers.post['Content-Type'] = 'application/json';
+        const imageUrl = await axios.post('http://sevgaz.loc/wp-json/wp/v2/media/'+ imageId,{
+            responseType: 'json',
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+        },{ auth: {
+                username: 'api',
+                password: '12345'
+            }}).then(function (response) {
+               // console.log(response);
+            return response.data.source_url
         });
 
-        queryrResult.map((post, index) => {
-
-            console.log(post);
-            return ({image: post.id})
-        });
-
-    }
+        return imageUrl;
+    };
 
 
 
@@ -60,8 +73,9 @@ class Api extends Component {
                     this.state.posts.map((post, index) => {
                         return (
                             <Card  key={index} >
-                                <Card.Body  >
+                                <Card.Body>
                                     <h1>{post.title}</h1>
+                                    { post.image ? <img src={post.image} width="100px" height="100px"/> : '' }
                                     <p>ID: {post.id}</p>
                                     <p dangerouslySetInnerHTML={{ __html: post.content }} ></p>
                                 </Card.Body>
