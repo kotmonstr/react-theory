@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Card, Container} from 'react-bootstrap';
-import Layout from "../hoc/Layout/Layout";
 
 class Api extends Component {
 
@@ -72,7 +71,7 @@ class Api extends Component {
             'margin': '20px'
         };
         return (
-            <Layout>
+
                 <div className="well" style={divStyle}>
                     <Container>
                     {
@@ -92,7 +91,7 @@ class Api extends Component {
                     }
                     </Container>
                 </div>
-            </Layout>
+
         );
     }
 }

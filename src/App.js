@@ -71,10 +71,11 @@ class App extends Component {
         return (
 
             <Layout>
+                <Menu />
 
                 <Route path="/" exact  />
-                <Route path="/api" exact component={Api} />
-                <Route path="/counter" exact component={Counter} />
+                <Route path="/api"  component={Api} />
+                <Route path="/counter"  component={Counter} />
 
 
 
@@ -82,7 +83,7 @@ class App extends Component {
 
                       <Container>
 
-                        <Menu />
+
 
 
 
