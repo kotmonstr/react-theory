@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<App name="ford" post="1" />, document.getElementById('root'));
+const application = (
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
+ReactDOM.render(application, document.getElementById('root'));
 serviceWorker.unregister();

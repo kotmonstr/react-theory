@@ -7,6 +7,9 @@ import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import Api from './api/Api';
 import Counter from "./counter/Counter";
+import Layout from "./hoc/Layout/Layout";
+import { Route } from 'react-router-dom';
+import Menu from "./menu/menu";
 
 class App extends Component {
 
@@ -23,10 +26,6 @@ class App extends Component {
             title: 'Kostya Sychev'
         };
     }
-
-
-
-
 
     inputHandler = (e)=>{
         this.setState({
@@ -61,10 +60,8 @@ class App extends Component {
         )
     };
 
-
     render() {
         const divStyle = {
-            //'border': '1px solid red',
             'padding': '20px',
             'margin': '20px'
         };
@@ -72,39 +69,55 @@ class App extends Component {
         const title = this.state.title;
 
         return (
-            <div className="App" style={divStyle}>
-                <Counter />
-                <Container>
-                    <Row>
-                        <Col><h1> Hello {title} !</h1></Col>
 
-                        <Col>
-                            <input type="text" onChange={ this.inputHandler } />
-                            <button onClick={this.chancheTitleHandler.bind(this,'mainbutton')}>Change Title</button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        { this.state.cars.map((car,index)=>{
-                            return(
-                                <Col key={index}>
-                                    <Car
-                                        name={car.name}
-                                        year={car.year}
-                                        onChangeTitle={this.chancheTitleHandler.bind(this,car.name)}
-                                        onChangeName={(event) => this.onChangeName(event.target.value, index)}
-                                        onDelete={this.deleteHandler.bind( this, index)}
-                                        color={car.color}>
-                                    </Car>
-                                </Col>
+            <Layout>
+
+                <Route path="/" exact  />
+                <Route path="/api" exact component={Api} />
+                <Route path="/counter" exact component={Counter} />
+
+
+
+                <div className="App well" style={divStyle}>
+
+                      <Container>
+
+                        <Menu />
+
+
+
+                        <Row>
+                            <Col><h1> Hello {title} !</h1></Col>
+
+                            <Col>
+                                <input type="text" onChange={ this.inputHandler } />
+                                <button onClick={this.chancheTitleHandler.bind(this,'mainbutton')}>Change Title</button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            { this.state.cars.map((car,index)=>{
+                                return(
+                                    <Col key={index}>
+                                        <Car
+                                            name={car.name}
+                                            year={car.year}
+                                            onChangeTitle={this.chancheTitleHandler.bind(this,car.name)}
+                                            onChangeName={(event) => this.onChangeName(event.target.value, index)}
+                                            onDelete={this.deleteHandler.bind( this, index)}
+                                            color={car.color}>
+                                        </Car>
+                                    </Col>
                                 )
-                        })}
-                    </Row>
+                            })}
+                        </Row>
 
-                    <Row>
-                        <Api />
-                    </Row>
-                </Container>
-               </div>
+
+                    </Container>
+                </div>
+
+
+
+            </Layout>
 
         );
     }

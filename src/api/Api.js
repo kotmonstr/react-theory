@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Card } from 'react-bootstrap';
+import {Card, Container} from 'react-bootstrap';
+import Layout from "../hoc/Layout/Layout";
 
 class Api extends Component {
 
@@ -65,26 +66,33 @@ class Api extends Component {
 
 
     render() {
-        console.log(this.state.posts);
 
+        const divStyle = {
+            'padding': '20px',
+            'margin': '20px'
+        };
         return (
-            <div>
-                {
-                    this.state.posts.map((post, index) => {
-                        return (
-                            <Card  key={index} >
-                                <Card.Body>
-                                    <h1>{post.title}</h1>
-                                    { post.image ? <img src={post.image} width="100px" height="100px"/> : '' }
-                                    <p>ID: {post.id}</p>
-                                    <p dangerouslySetInnerHTML={{ __html: post.content }} ></p>
-                                </Card.Body>
-                            </Card>
+            <Layout>
+                <div className="well" style={divStyle}>
+                    <Container>
+                    {
+                        this.state.posts.map((post, index) => {
+                            return (
+                                <Card  key={index} >
+                                    <Card.Body>
+                                        <h1>{post.title}</h1>
+                                        { post.image ? <img src={post.image} width="100px" height="100px"/> : '' }
+                                        <p>ID: {post.id}</p>
+                                        <p dangerouslySetInnerHTML={{ __html: post.content }} ></p>
+                                    </Card.Body>
+                                </Card>
 
-                        )
-                    })
-                }
-            </div>
+                            )
+                        })
+                    }
+                    </Container>
+                </div>
+            </Layout>
         );
     }
 }
