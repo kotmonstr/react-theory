@@ -25,13 +25,14 @@ class Api extends Component {
         queryrResult.map((post, index) => {
             if(post.featured_media !==0){
                  this.getImageById(post.featured_media).then((resolve)=>{
-                     posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: resolve})
+                    // console.log( post.link);
+                     posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: resolve, link: post.link})
                      this.setState({
                         posts
                      });
                 });
             }else{
-                posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: ''})
+                posts.push({title: post.title.rendered, content: post.content.rendered, id: post.id , image: '', link: post.link })
                 this.setState({
                     posts
                 });
@@ -74,7 +75,7 @@ class Api extends Component {
                             return (
                                 <Card  key={index} >
                                     <Card.Body>
-                                        <h1>{post.title}</h1>
+                                        <a href={post.link} target="_blank"><h1>{post.title}</h1></a>
                                         { post.image ? <img src={post.image} width="100px" height="100px"/> : '' }
                                         <p>ID: {post.id}</p>
                                         <p dangerouslySetInnerHTML={{ __html: post.content }} ></p>
