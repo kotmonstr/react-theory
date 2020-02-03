@@ -22,8 +22,6 @@ class Counter extends React.Component {
     render() {
 
         return (
-
-
             <Container>
                 <Row>
                     <h1>Counter {this.state.counter}</h1>
@@ -33,7 +31,6 @@ class Counter extends React.Component {
                     <button onClick={this.removeCount}>-</button>
                 </Row>
             </Container>
-
         )
     }
 

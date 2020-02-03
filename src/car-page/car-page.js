@@ -13,6 +13,7 @@ class CarPage extends Component {
                 {name: 'Audi', year: '2010',color: 'blue'},
                 {name: 'Nissan', year: '2015',color: 'green'},
                 {name: 'LADA', year: '2015',color: 'marble'},
+                {name: 'LADA', year: '2015',color: 'marble'},
             ],
             title: 'Kostya Sychev'
         };

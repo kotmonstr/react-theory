@@ -44,9 +44,7 @@ class App extends Component {
         return (
 
             <Layout>
-
                 <Menu />
-
                 <div className="App well" style={divStyle}>
                     <Container>
                         <Row>
@@ -59,16 +57,11 @@ class App extends Component {
                         </Row>
                     </Container>
                 </div>
-
                 <Route path="/" exact  />
                 <Route path="/api"  component={Api} />
                 <Route path="/counter"  component={Counter} />
                 <Route path="/car-page"  component={CarPage} />
-
-
-
             </Layout>
-
         );
     }
 }

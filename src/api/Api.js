@@ -18,7 +18,7 @@ class Api extends Component {
 
     getPosts = async () => {
         let posts = [];
-        const queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/posts').then(function (response) {
+        const queryrResult = await axios.get('http://sevgaz.loc/wp-json/wp/v2/posts?order=asc&per_page=3').then(function (response) {
             return response.data
         });
 
@@ -58,11 +58,6 @@ class Api extends Component {
 
         return imageUrl;
     };
-
-
-
-
-
 
     render() {
 

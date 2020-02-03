@@ -17,7 +17,6 @@ class Car extends Component{
             inputClasses.push('red')
         }
 
-
         const style = {
             boxShadow: '0 4px 5px 0 rgba(0, 0, 0, .24)',
             ':hover' : {
@@ -32,7 +31,6 @@ class Car extends Component{
             <div className="Car" style={ style }>
 
                 <Card>
-
                     <Card.Body  style={style}>
                         <Card.Title>{ this.props.name }</Card.Title>
                         <Card.Text>
@@ -52,8 +50,6 @@ class Car extends Component{
                         <Button variant="danger" onClick={this.props.onDelete} className='red_button'>DELETE</Button>
                     </Card.Body>
                 </Card>
-
-
             </div>
         );
     }
