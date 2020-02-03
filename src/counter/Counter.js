@@ -1,33 +1,38 @@
 import React from "react";
+import {Container, Row} from "react-bootstrap";
 
-class Counter extends React.Component{
+class Counter extends React.Component {
 
     state = {
-        counter : 0
+        counter: 0
     }
 
-    addCount = () =>{
+    addCount = () => {
         this.setState({
-            counter : this.state.counter + 1
+            counter: this.state.counter + 1
         })
     }
 
-    removeCount = () =>{
+    removeCount = () => {
         this.setState({
-            counter : this.state.counter - 1
+            counter: this.state.counter - 1
         })
     }
 
     render() {
 
-        return(
+        return (
 
-                <div>
-                    <h1>Counter { this.state.counter }</h1>
+
+            <Container>
+                <Row>
+                    <h1>Counter {this.state.counter}</h1>
+                </Row>
+                <Row>
                     <button onClick={this.addCount}>+</button>
                     <button onClick={this.removeCount}>-</button>
-                </div>
-
+                </Row>
+            </Container>
 
         )
     }

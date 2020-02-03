@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import Car from './car/Car.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
@@ -10,6 +9,7 @@ import Counter from "./counter/Counter";
 import Layout from "./hoc/Layout/Layout";
 import { Route } from 'react-router-dom';
 import Menu from "./menu/menu";
+import CarPage from "./car-page/car-page";
 
 class App extends Component {
 
@@ -17,13 +17,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            cars: [
-                {name: 'Ford', year: '2018',color: 'red'},
-                {name: 'Audi', year: '2010',color: 'blue'},
-                {name: 'Nissan', year: '2015',color: 'green'},
-                {name: 'LADA', year: '2015',color: 'marble'},
-            ],
-            title: 'Kostya Sychev'
+              title: 'Kostya Sychev'
         };
     }
 
@@ -39,27 +33,6 @@ class App extends Component {
         });
     };
 
-    onChangeName = (name,index)=>{
-        const car = this.state.cars[index]; ///то что было
-        car.name = name; //  состояние меняем
-        const cars = this.state.cars; //весь массив до изменения
-        cars[index] = car; // подмен а 2 раз
-        this.setState({
-            cars
-        })
-    };
-
-    deleteHandler = (index)=>{
-        const cars = this.state.cars.concat();
-        cars.splice(index,1);
-
-        this.setState({
-            cars
-            }
-
-        )
-    };
-
     render() {
         const divStyle = {
             'padding': '20px',
@@ -71,22 +44,11 @@ class App extends Component {
         return (
 
             <Layout>
+
                 <Menu />
 
-                <Route path="/" exact  />
-                <Route path="/api"  component={Api} />
-                <Route path="/counter"  component={Counter} />
-
-
-
                 <div className="App well" style={divStyle}>
-
-                      <Container>
-
-
-
-
-
+                    <Container>
                         <Row>
                             <Col><h1> Hello {title} !</h1></Col>
 
@@ -95,26 +57,13 @@ class App extends Component {
                                 <button onClick={this.chancheTitleHandler.bind(this,'mainbutton')}>Change Title</button>
                             </Col>
                         </Row>
-                        <Row>
-                            { this.state.cars.map((car,index)=>{
-                                return(
-                                    <Col key={index}>
-                                        <Car
-                                            name={car.name}
-                                            year={car.year}
-                                            onChangeTitle={this.chancheTitleHandler.bind(this,car.name)}
-                                            onChangeName={(event) => this.onChangeName(event.target.value, index)}
-                                            onDelete={this.deleteHandler.bind( this, index)}
-                                            color={car.color}>
-                                        </Car>
-                                    </Col>
-                                )
-                            })}
-                        </Row>
-
-
                     </Container>
                 </div>
+
+                <Route path="/" exact  />
+                <Route path="/api"  component={Api} />
+                <Route path="/counter"  component={Counter} />
+                <Route path="/car-page"  component={CarPage} />
 
 
 
