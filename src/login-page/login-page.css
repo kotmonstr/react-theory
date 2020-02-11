@@ -1,0 +1,16 @@
+.form-error{
+
+    padding: 5px;
+    margin: 5px;
+    color: red;
+}
+.error-input{
+ border: 1px solid red!important;
+}
+.error-input:focus{
+    box-shadow: none;
+}
+
+.card{
+ padding: 20px;
+}
